@@ -1,0 +1,15 @@
+.profile__add-btn {
+  background: transparent url(../../../images/Add\ Button.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 150px;
+  height: 50px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: .5s;
+}
+
+.profile__add-btn:hover {
+  opacity: .6;
+}
