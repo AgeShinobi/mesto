@@ -24,3 +24,8 @@
   opacity: .8;
 }
 
+@media screen and (max-width: 500px) {
+  .popup-edit__submit {
+    margin: 45px 0 0;
+  }
+}

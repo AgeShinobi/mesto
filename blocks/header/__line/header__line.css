@@ -6,3 +6,9 @@
   opacity: .7;
   border: 1px solid #545454
 }
+
+@media screen and (max-width: 500px) {
+  .header__line {
+    margin: 31.6px 0 0;
+  }
+}

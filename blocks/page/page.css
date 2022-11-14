@@ -18,3 +18,9 @@
   -moz-text-size-adjust: 100%;
   text-rendering: optimizeLegibility;
 }
+
+@media screen and (max-width: 500px) {
+  .page {
+    padding: 0;
+  }  
+}
