@@ -6,9 +6,15 @@
   column-gap: 17px;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 980px) {
   .content__cards {
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+  }
+}
 
+@media screen and (max-width: 680px) {
+  .content__cards {
     padding-top: 36px;
     grid-template-columns: 1fr;
     justify-items: center;
