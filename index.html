@@ -22,11 +22,15 @@
       <section class="profile content__profile">
 
         <div class="profile__wrapper">
+          <!-- круглая аватарка -->
           <div class="profile__avatar"></div>
-          <!-- инфо -->
+          <!-- инфо. Выстраивает элементы в колонку -->
           <div class="profile__info">
-            <h1 class="profile__my-name">Жак-Ив Кусто<button class="profile__edit-btn"></button>
-            </h1>
+            <!-- Здесь выравнивает имя и кнопку в одну строку -->
+            <div class="profile__info profile__info_row">
+              <h1 class="profile__my-name">Жак-Ив Кусто</h1>
+              <button class="profile__edit-btn"></button>
+            </div>
             <h2 class="profile__about-me">Исследователь океана</h2>
           </div>
         </div>
@@ -103,15 +107,16 @@
         <button class="popup-edit__close"></button>
         <h2 class="popup-edit__title">Редактировать профиль</h2>
         <form action="popup-edit__form">
-          <input class="popup-edit__input" type="text" placeholder="Жак-Ив Кусто" >
+          <input id="name" class="popup-edit__input" type="text" value="Жак-Ив Кусто" >
           <hr class="popup-edit__line">
-          <input class="popup-edit__input" type="text" placeholder="Исследователь океана" >
+          <input id="job" class="popup-edit__input" type="text" value="Исследователь океана" >
           <hr class="popup-edit__line">
-          <button class="popup-edit__submit" type="submit">Сохранить</button>
+          <button class="popup-edit__submit" type="button">Сохранить</button>
         </form>
       </div>
     </section>
   </div>
+  <script src="./scripts/index.js"></script>
 </body>
 
 </html>
