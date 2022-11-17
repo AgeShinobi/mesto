@@ -1,5 +1,5 @@
 .profile__add-btn {
-  background: transparent url(../../../images/Add\ Button.svg);
+  background: transparent url(../../../images/add-button.svg);
   background-size: contain;
   background-repeat: no-repeat;
   width: 100%;
@@ -19,7 +19,7 @@
 
 @media screen and (max-width: 880px) {
   .profile__add-btn {
-    background: transparent url(../../../images/Add\ Button_mobile.svg);
+    background: transparent url(../../../images/add-button_mobile.svg);
     margin: 33px 0 0;
     max-width: 282px;
   }
