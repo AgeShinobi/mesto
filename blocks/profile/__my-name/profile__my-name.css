@@ -8,9 +8,14 @@
 
 @media screen and (max-width: 680px) {
   .profile__my-name {
-    margin-top: 26px;
     font-size: 27px;
     line-height: 33px;
     text-align: center;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .profile__my-name {
+    margin: 25px 0 0 27px;
   }
 }

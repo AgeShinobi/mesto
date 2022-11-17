@@ -15,7 +15,6 @@
 /* header */
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__logo/header__logo.css);
-@import url(../blocks/header/__line/header__line.css);
 
 /* content */
 @import url(../blocks/content/content.css);
@@ -27,11 +26,11 @@
 @import url(../blocks/profile/__wrapper/profile__wrapper.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
 @import url(../blocks/profile/__info/profile__info.css);
+@import url(../blocks/profile/__main-info/profile__main-info.css);
 @import url(../blocks/profile/__my-name/profile__my-name.css);
 @import url(../blocks/profile/__about-me/profile__about-me.css);
 @import url(../blocks/profile/__edit-btn/profile__edit-btn.css);
 @import url(../blocks/profile/__add-btn/profile__add-btn.css);
-@import url(../blocks/profile/__info/_row/profile__info_row.css);
 
 /* cards */
 @import url(../blocks/cards/cards.css);
@@ -45,13 +44,12 @@
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__title/footer__title.css);
 
-/* popup-edit */
-@import url(../blocks/popup-edit/popup-edit.css);
-@import url(../blocks/popup-edit/__close/popup-edit__close.css);
-@import url(../blocks/popup-edit/__container/popup-edit__container.css);
-@import url(../blocks/popup-edit/__form/popup-edit__form.css);
-@import url(../blocks/popup-edit/__input/popup-edit__input.css);
-@import url(../blocks/popup-edit/__submit/popup-edit__submit.css);
-@import url(../blocks/popup-edit/__title/popup-edit__title.css);
-@import url(../blocks/popup-edit/__line/popup-edit__line.css);
-@import url(../blocks/popup-edit/_is-opened/popup-edit_is-opened.css);
+/* popup */
+@import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/__close/popup__close.css);
+@import url(../blocks/popup/__container/popup__container.css);
+@import url(../blocks/popup/__form/popup__form.css);
+@import url(../blocks/popup/__input/popup__input.css);
+@import url(../blocks/popup/__submit/popup__submit.css);
+@import url(../blocks/popup/__title/popup__title.css);
+@import url(../blocks/popup/_is-opened/popup_is-opened.css);

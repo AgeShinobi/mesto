@@ -2,7 +2,7 @@
   background: transparent url(../../../images/like-button_no-active.svg);
   background-size: contain;
   background-repeat: no-repeat;
-  width: 22px;
+  min-width: 22px;
   height: 19px;
   border: none;
   outline: none;

@@ -1,4 +1,5 @@
-.profile__info_row {
+.profile__main-info {
+  display: flex;
   flex-direction: row;
   align-items: baseline;
 }

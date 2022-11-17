@@ -1,9 +1,9 @@
-.popup-edit__input {
+.popup__input {
   /* input */
   width: 100%;
   border: none;
   outline: none;
-  padding: 0;
+  padding: 0 0 9px;
   margin-top: 30px;
 
   /* текст */
@@ -14,8 +14,10 @@
   text-align: left;
   color: #000000;
 
+  /* line */
+  border-bottom: 1px solid rgba(0,0,0,.2);
 }
 
-.popup-edit__input:first-of-type {
+.popup__input:first-of-type {
   margin-top: 0;
 }

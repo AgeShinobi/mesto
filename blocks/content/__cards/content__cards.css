@@ -17,6 +17,5 @@
   .content__cards {
     padding-top: 36px;
     grid-template-columns: 1fr;
-    justify-items: center;
   }
 }

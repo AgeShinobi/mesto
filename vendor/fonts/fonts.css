@@ -8,7 +8,7 @@
 
 @font-face {
   font-family: 'Inter';
-  font-weight: 700;
+  font-weight: 500;
   font-display: swap;
   src: url(./Inter-500.woff) format('woff'),
     url(./Inter-500.woff2) format('woff2');
