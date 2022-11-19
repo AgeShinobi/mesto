@@ -1,9 +1,7 @@
 .card {
   max-width: 282px;
-  height: 361px;
   overflow: hidden;
   object-fit: cover;
-
   background: #FFFFFF;
   color: #000000;
   border: none;

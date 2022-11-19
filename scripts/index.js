@@ -1,8 +1,6 @@
-// 1. Открытие/закрытие попапа
-// 1.1 Выборка самого попапа
 const popupEditElement = document.querySelector('.popup');
-// 1.2 Выборка элемента с кнопками вызова попапа
 const popupProfileElement = document.querySelector('.profile');
+const popupForm = document.forms.profileEditForm; 
 // 1.3 Выборка необходимых элементов
 const popupEditOpenElement = popupProfileElement.querySelector('.profile__edit-btn');
 const popupEditCloseElement = popupEditElement.querySelector('.popup__close');
@@ -20,12 +18,12 @@ const openPopupEdit = function (event) {
   popupEditNameInput.value = nameTextElement.textContent;
   popupEditJobInput.value = jobTextElement.textContent;
 
-  popupEditElement.classList.add('popup_is-opened');
+  popupEditElement.classList.add('popup_opened');
 }
 
 // Закрытие попапа
 const closePopupEdit = function () {
-  popupEditElement.classList.remove('popup_is-opened');
+  popupEditElement.classList.remove('popup_opened');
 }
 
 // Закрытие попапа при нажатии за пределами окна
@@ -37,11 +35,6 @@ const closePopupEdit = function () {
 //   closePopupEdit();
 // }
 
-
-
-
-
-
 // 2. Запись и сохранение значений в окне 'редактировать профиль'.
 // При нажатии на submit должна происходить выборка содержимого input 
 // и перезаписываться в profile
@@ -52,9 +45,6 @@ const submitPopupEdit = function (event) {
   // переносим значения в html-разметку
   nameTextElement.textContent = nameInputValue;
   jobTextElement.textContent = jobInputValue;
-  // при повторном открытии окна мы должны видеть указанные значения ранее
-  popupEditNameInput.defaultValue = nameInputValue;
-  popupEditJobInput.defaultValue = jobInputValue;
   
   // И закрываем попап
   closePopupEdit();
@@ -64,4 +54,4 @@ const submitPopupEdit = function (event) {
 // Регистрируем обработчики по клику
 popupEditOpenElement.addEventListener('click', openPopupEdit);
 popupEditCloseElement.addEventListener('click', closePopupEdit);
-popupEditElement.addEventListener('submit', submitPopupEdit);
+popupForm.addEventListener('submit', submitPopupEdit);

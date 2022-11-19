@@ -4,10 +4,16 @@
   font-weight: 500;
   line-height: 48px;
   text-align: left;
+
+  text-overflow: ellipsis;
+  max-width: 345px;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 @media screen and (max-width: 680px) {
   .profile__my-name {
+    max-width: 245px;
     font-size: 27px;
     line-height: 33px;
     text-align: center;
