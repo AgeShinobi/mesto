@@ -3,12 +3,11 @@ const popupProfileElement = document.querySelector('.profile');
 const popupEditNameInput = popupEditElement.querySelector('#name');
 const popupEditJobInput = popupEditElement.querySelector('#job');
 const popupForm = document.forms.profileEditForm; 
-const popupEditOpenElement = popupProfileElement.querySelector('.profile__edit-btn');
 const popupEditCloseElement = popupEditElement.querySelector('.popup__close');
+const popupEditOpenElement = popupProfileElement.querySelector('.profile__edit-btn');
 let nameTextElement = popupProfileElement.querySelector('.profile__my-name');
 let jobTextElement = popupProfileElement.querySelector('.profile__about-me');
 let cardLikeElements = document.querySelectorAll('.card__like-btn');
-
 
 // Открытие попапа
 const openPopupEdit = function (event) {
@@ -18,12 +17,21 @@ const openPopupEdit = function (event) {
 
   popupEditElement.classList.add('popup_opened');
 }
-
 // Закрытие попапа
 const closePopupEdit = function () {
   popupEditElement.classList.remove('popup_opened');
 }
 
+
+// // Закрытие попапа при нажатии за пределами окна
+// const closePopupEditByClickOnOverlay = function (event) {
+//   console.log(event.target);
+//   // if (event.target !== event.currentTarget) {
+//     // return
+//   // }
+
+//   closePopupEdit();
+// }
 
 // 2. Запись и сохранение значений в окне 'редактировать профиль'.
 // При нажатии на submit должна происходить выборка содержимого input 
@@ -35,9 +43,13 @@ const submitPopupEdit = function (event) {
   // переносим значения в html-разметку
   nameTextElement.textContent = nameInputValue;
   jobTextElement.textContent = jobInputValue;
-  
   // И закрываем попап
   closePopupEdit();
+}
+
+// like вкл/выкл
+const likeSwitch = function (event) {
+  event.target.classList.toggle('card__like-btn_active');
 }
 
 
@@ -45,7 +57,7 @@ const submitPopupEdit = function (event) {
 popupEditOpenElement.addEventListener('click', openPopupEdit);
 popupEditCloseElement.addEventListener('click', closePopupEdit);
 popupForm.addEventListener('submit', submitPopupEdit);
-// Присвоить каждому лайку обработчик по клику
+// Присвоить каждому лайку слушатель по клику
 cardLikeElements.forEach((element) => {
   element.addEventListener('click', likeSwitch);
 });

@@ -1,5 +1,6 @@
 .card {
   max-width: 282px;
+  width: 100%;
   overflow: hidden;
   object-fit: cover;
   background: #FFFFFF;
