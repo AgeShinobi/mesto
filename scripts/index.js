@@ -1,15 +1,20 @@
 const popupEditElement = document.querySelector('.popup');
 const popupProfileElement = document.querySelector('.profile');
+const popupEditNameInput = popupEditElement.querySelector('#name');
+const popupEditJobInput = popupEditElement.querySelector('#job');
 const popupForm = document.forms.profileEditForm; 
 // 1.3 Выборка необходимых элементов
 const popupEditOpenElement = popupProfileElement.querySelector('.profile__edit-btn');
 const popupEditCloseElement = popupEditElement.querySelector('.popup__close');
-// Inputs
-const popupEditNameInput = popupEditElement.querySelector('#name');
-const popupEditJobInput = popupEditElement.querySelector('#job');
-// Элементы из profile
 let nameTextElement = popupProfileElement.querySelector('.profile__my-name');
 let jobTextElement = popupProfileElement.querySelector('.profile__about-me');
+let cardLikeElements = document.querySelectorAll('.card__like-btn');
+
+// like is active
+const likeSwitch = function (event) {
+  event.target.classList.toggle('card__like-btn_active');
+}
+
 
 
 // Открытие попапа
@@ -27,13 +32,14 @@ const closePopupEdit = function () {
 }
 
 // Закрытие попапа при нажатии за пределами окна
-// const closePopupEditByClickOnOverlay = function (event) {
-//   if (event.target !== event.currentTarget) {
-//     return
-//   }
+const closePopupEditByClickOnOverlay = function (event) {
+  console.log(event.target);
+  // if (event.target !== event.currentTarget) {
+    // return
+  // }
 
-//   closePopupEdit();
-// }
+  closePopupEdit();
+}
 
 // 2. Запись и сохранение значений в окне 'редактировать профиль'.
 // При нажатии на submit должна происходить выборка содержимого input 
@@ -55,3 +61,7 @@ const submitPopupEdit = function (event) {
 popupEditOpenElement.addEventListener('click', openPopupEdit);
 popupEditCloseElement.addEventListener('click', closePopupEdit);
 popupForm.addEventListener('submit', submitPopupEdit);
+// Присвоение каждому 
+cardLikeElements.forEach((element) => {
+  element.addEventListener('click', likeSwitch);
+});
