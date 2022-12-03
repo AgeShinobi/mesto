@@ -1,5 +1,5 @@
 .popup {
-  display: none;
+  display: flex;
   position: fixed;
   top: 0;
   left: 0;
@@ -11,4 +11,9 @@
 
   font-family: 'Inter', Arial, sans-serif;
   color: #000000;
+
+  /* плавность при открытии */
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility .5s, opacity .5s linear;
 }

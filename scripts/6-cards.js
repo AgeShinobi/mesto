@@ -47,8 +47,6 @@ initialCards.forEach((el) => {
   cardsSectionElement.prepend(cardElement);
 
   cardElement.querySelector('.card__image').addEventListener('click', openPopupFullScreen);
-
-  
   
 });
 
