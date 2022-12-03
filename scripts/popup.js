@@ -1,9 +1,11 @@
 // popup
 const popupEditElement = document.querySelector('#popup-edit');
 const popupAddElement = document.querySelector('#popup-add');
+const popupFullScreenElement = document.querySelector('#popup-full-screen');
 // close popup btn elements
 const popupEditCloseElement = popupEditElement.querySelector('.popup__close');
 const popupAddCloseElement = popupAddElement.querySelector('.popup__close');
+const popupFullScreenCloseElement = popupFullScreenElement.querySelector('.popup__close');
 // profile elements
 const popupProfileElement = document.querySelector('.profile');
 const popupEditOpenElement = popupProfileElement.querySelector('.profile__edit-btn');
@@ -37,12 +39,28 @@ const openPopupAdd = () => {
   popupAddElement.classList.add('popup_opened');
 }
 
+const openPopupFullScreen = (event) => {
+  let popupFullScreenImg = popupFullScreenElement.querySelector('.popup__image');
+  let popupFullScreenCaption = popupFullScreenElement.querySelector('.popup__caption');
+  //получить свойста пикчи и присвоить тегу img свойства src & alt
+  popupFullScreenImg.src = event.target.src;
+  popupFullScreenImg.alt = event.target.alt;
+  popupFullScreenCaption.textContent = event.target.alt;
+ 
+  //открыть попап
+  popupFullScreenElement.classList.add('popup_opened');
+}
+
 // Закрытие попапа
 const closePopupEdit = function () {
   popupEditElement.classList.remove('popup_opened');
 }
 const closePopupAdd = () => {
   popupAddElement.classList.remove('popup_opened');
+}
+
+const closePopupFullScreen = () => {
+  popupFullScreenElement.classList.remove('popup_opened');
 }
 
 
@@ -88,6 +106,10 @@ const submitPopupAdd = function (event) {
   function(evt) {
     cardElement.remove();
   });
+  //Добавить слушатель на картинку для открытия popupFullScreen
+  cardElement.querySelector('.card__image').addEventListener('click', openPopupFullScreen);
+  //
+  
   // вставляет склонированный контент на страницу через .append
   cardsSectionElement.prepend(cardElement);
   // И закрываем попап
@@ -102,3 +124,4 @@ popupEditForm.addEventListener('submit', submitPopupEdit);
 popupAddOpenElement.addEventListener('click', openPopupAdd);
 popupAddCloseElement.addEventListener('click', closePopupAdd);
 popupAddForm.addEventListener('submit', submitPopupAdd);
+popupFullScreenCloseElement.addEventListener('click', closePopupFullScreen);

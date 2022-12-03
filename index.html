@@ -68,27 +68,35 @@
         <button type="button" class="popup__close"></button>
         <h2 class="popup__title">Новое место</h2>
         <form name="profileAddForm" action="popup__form">
-          <input name="mesto" id="mesto" class="popup__input" type="text" placeholder="Название"
+          <input name="mesto" id="mesto" class="popup__input" type="text" placeholder="Название" required>
+          <input name="img-link" id="img-link" class="popup__input" type="text" placeholder="Ссылка на картинку"
             required>
-          <input name="img-link" id="img-link" class="popup__input" type="text"
-            placeholder="Ссылка на картинку" required>
           <button class="popup__submit" type="submit">Создать</button>
         </form>
       </div>
     </section>
 
+    <!-- popupFullScreen -->
+    <section id="popup-full-screen" class="popup">
+      <figure class="popup__image-wrapper">
+        <button type="button" class="popup__close"></button>
+        <img class="popup__image" src="./images/karachaevsk.png" alt="Карачаевск">
+        <figcaption class="popup__caption">Карачаево-Черкессия</figcaption>
+      </figure>
+    </section>
+
   </div>
 
-<template id="cardTemplate">
-  <article class="card">
-    <img class="card__image" src="" alt="">
-    <button type="button" class="card__trash-btn" aria-label="Удалить"></button>
-    <div class="card__wrapper">
-      <h2 class="card__title"></h2>
-      <button type="button" class="card__like-btn" aria-label="Нравится"></button>
-    </div>
-  </article>
-</template>
+  <template id="cardTemplate">
+    <article class="card">
+      <img class="card__image" src="" alt="">
+      <button type="button" class="card__trash-btn" aria-label="Удалить"></button>
+      <div class="card__wrapper">
+        <h2 class="card__title"></h2>
+        <button type="button" class="card__like-btn" aria-label="Нравится"></button>
+      </div>
+    </article>
+  </template>
 
   <script src="./scripts/popup.js"></script>
   <script src="./scripts/cards.js"></script>

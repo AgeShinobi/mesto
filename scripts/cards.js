@@ -45,6 +45,9 @@ initialCards.forEach((el) => {
   });
   // вставляет склонированный контент на страницу через .prepend
   cardsSectionElement.prepend(cardElement);
+
+  cardElement.querySelector('.card__image').addEventListener('click', openPopupFullScreen);
+
   
   
 });
