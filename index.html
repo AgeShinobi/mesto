@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./pages/index.css">
+  <script defer src="./scripts/index.js"></script>
   <title>Mesto</title>
 </head>
 
@@ -52,7 +53,7 @@
       <div class="popup__container">
         <button type="button" class="popup__close"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form name="profileEditForm" action="popup__form">
+        <form name="profileEditForm">
           <input name="name" id="name" class="popup__input" type="text" value="Жак-Ив Кусто" placeholder="Ваше имя"
             required>
           <input name="job" id="job" class="popup__input" type="text" value="Исследователь океана"
@@ -69,7 +70,7 @@
         <h2 class="popup__title">Новое место</h2>
         <form name="profileAddForm" action="popup__form">
           <input name="mesto" id="mesto" class="popup__input" type="text" placeholder="Название" required>
-          <input name="img-link" id="img-link" class="popup__input" type="text" placeholder="Ссылка на картинку"
+          <input name="img-link" id="img-link" class="popup__input" type="url" placeholder="Ссылка на картинку"
             required>
           <button class="popup__submit" type="submit">Создать</button>
         </form>
@@ -77,11 +78,11 @@
     </section>
 
     <!-- popupFullScreen -->
-    <section id="popup-full-screen" class="popup">
+    <section id="popup-full-screen" class="popup popup_full-screen">
       <figure class="popup__image-wrapper">
         <button type="button" class="popup__close"></button>
-        <img class="popup__image" src="./images/karachaevsk.png" alt="Карачаевск">
-        <figcaption class="popup__caption">Карачаево-Черкессия</figcaption>
+        <img class="popup__image" src="#" alt="#">
+        <figcaption class="popup__caption"></figcaption>
       </figure>
     </section>
 
@@ -98,7 +99,7 @@
     </article>
   </template>
 
-  <script src="./scripts/popup.js"></script>
+  
   <script src="./scripts/cards.js"></script>
 </body>
 

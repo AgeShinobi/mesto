@@ -26,30 +26,6 @@ const initialCards = [
   }
 ];
 
-initialCards.forEach((el) => {
-  //клонирование содержимого темплейта
-  const cardElement = cardTemplateElement.querySelector('.card').cloneNode(true);
-  //присвоение значений из массива
-  cardElement.querySelector('.card__title').textContent = el.name;
-  cardElement.querySelector('.card__image').src = el.link;
-  cardElement.querySelector('.card__image').alt = el.name;
-
-  cardElement.querySelector('.card__like-btn').addEventListener('click',
-  function(evt) {
-    evt.target.classList.toggle('card__like-btn_active');
-  });
-
-  cardElement.querySelector('.card__trash-btn').addEventListener('click', 
-  function(evt) {
-    cardElement.remove();
-  });
-  // вставляет склонированный контент на страницу через .prepend
-  cardsSectionElement.prepend(cardElement);
-
-  cardElement.querySelector('.card__image').addEventListener('click', openPopupFullScreen);
-  
-});
-
 
 
 

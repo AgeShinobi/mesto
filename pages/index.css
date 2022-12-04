@@ -48,6 +48,7 @@
 
 /* popup */
 @import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/_full-screen/popup_full-screen.css);
 @import url(../blocks/popup/__close/popup__close.css);
 @import url(../blocks/popup/__container/popup__container.css);
 @import url(../blocks/popup/__form/popup__form.css);
