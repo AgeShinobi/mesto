@@ -41,8 +41,8 @@ const openPopupAdd = () => {
   openPopup(popupAddElement);
 }
 const openPopupFullScreen = (event) => {
-  let popupFullScreenImg = popupFullScreenElement.querySelector('.popup__image');
-  let popupFullScreenCaption = popupFullScreenElement.querySelector('.popup__caption');
+  const popupFullScreenImg = popupFullScreenElement.querySelector('.popup__image');
+  const popupFullScreenCaption = popupFullScreenElement.querySelector('.popup__caption');
   //получить свойста пикчи и присвоить тегу img свойства src & alt
   popupFullScreenImg.src = event.target.src;
   popupFullScreenImg.alt = event.target.alt;
@@ -75,14 +75,6 @@ const DeleteCard = function (evt) {
   evt.target.closest('.card').remove();
 }
 
-// // Закрытие попапа при нажатии за пределами окна
-// const closePopupEditByClickOnOverlay = function (event) {
-  // if (event.target !== event.currentTarget) {
-//     // return
-//   // }
-
-//   closePopup(event.currentTarget);
-// }
 
 // 2. Запись и сохранение значений в окне 'редактировать профиль'.
 // При нажатии на submit должна происходить выборка содержимого input 
@@ -138,45 +130,6 @@ const submitPopupAdd = function (event) {
 
   closePopupAdd();
 }
-
-
-
-
-
-
-
-
-
-
-
-// const submitPopupAdd = function (event) {
-//   event.preventDefault()
-//   //клонирование содержимого темплейта
-//   const cardElement = cardTemplateElement.querySelector('.card').cloneNode(true);
-//   //Это титл и линк внутри темплейта. Им нужно присвоить значения из inputs
-//   cardElement.querySelector('.card__title').textContent = popupAddMestoInput.value;
-//   cardElement.querySelector('.card__image').src = popupAddImageInput.value;
-//   cardElement.querySelector('.card__image').alt = popupAddMestoInput.value;
-//   //добавить слушатель лайка для новой карточки
-//   cardElement.querySelector('.card__like-btn').addEventListener('click',
-//   function(evt) {
-//     evt.target.classList.toggle('card__like-btn_active');
-//   });
-//   //добавить слушатель на кнопку корзины
-//   cardElement.querySelector('.card__trash-btn').addEventListener('click', 
-//   function(evt) {
-//     cardElement.remove();
-//   });
-//   //Добавить слушатель на картинку для открытия popupFullScreen
-//   cardElement.querySelector('.card__image').addEventListener('click', openPopupFullScreen);
-//   //
-
-//   // вставляет склонированный контент на страницу через .append
-//   cardsSectionElement.prepend(cardElement);
-//   // И закрываем попап
-//   closePopupAdd()
-// }
-
 
 // Регистрируем обработчики по клику
 popupEditOpenElement.addEventListener('click', openPopupEdit);
