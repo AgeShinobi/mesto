@@ -1,5 +1,3 @@
-//imports
-
 // popup
 const popupEditElement = document.querySelector('#popup-edit');
 const popupAddElement = document.querySelector('#popup-add');
@@ -16,11 +14,11 @@ const jobTextElement = popupProfileElement.querySelector('.profile__about-me');
 const cardsSectionElement = document.querySelector('.cards');
 const popupAddOpenElement = popupProfileElement.querySelector('.profile__add-btn');
 // inputs
-const popupEditNameInput = popupEditElement.querySelector('#name');
-const popupEditJobInput = popupEditElement.querySelector('#job');
+const popupEditNameInput = popupEditElement.querySelector('#name-input');
+const popupEditJobInput = popupEditElement.querySelector('#job-input');
 const popupEditForm = document.forms.profileEditForm;
-const popupAddMestoInput = popupAddElement.querySelector('#mesto');
-const popupAddImageInput = popupAddElement.querySelector('#img-link');
+const popupAddMestoInput = popupAddElement.querySelector('#title-input');
+const popupAddImageInput = popupAddElement.querySelector('#link-input');
 const popupAddForm = document.forms.profileAddForm;
 // template
 const cardTemplateElement = document.querySelector('#cardTemplate').content;
@@ -35,10 +33,16 @@ const openPopupEdit = function (event) {
   popupEditNameInput.value = nameTextElement.textContent;
   popupEditJobInput.value = jobTextElement.textContent;
   openPopup(popupEditElement);
+  //навесим слушатель на оверлей
+  closePopupByClickOnOverlay(popupEditElement);
+  closePopupByEscape(popupEditElement);
 }
 const openPopupAdd = () => {
   popupAddForm.reset();
   openPopup(popupAddElement);
+  //навесим слушатель на оверлей
+  closePopupByClickOnOverlay(popupAddElement);
+  closePopupByEscape(popupAddElement);
 }
 const openPopupFullScreen = (event) => {
   const popupFullScreenImg = popupFullScreenElement.querySelector('.popup__image');
@@ -49,6 +53,9 @@ const openPopupFullScreen = (event) => {
   popupFullScreenCaption.textContent = event.target.alt;
   //открыть попап
   openPopup(popupFullScreenElement);
+  //навесим слушатель на оверлей
+  closePopupByClickOnOverlay(popupFullScreenElement);
+  closePopupByEscape(popupFullScreenElement);
 }
 
 
@@ -64,6 +71,29 @@ const closePopupAdd = () => {
 }
 const closePopupFullScreen = () => {
   closePopup(popupFullScreenElement);
+}
+
+// Закрытие попапа при нажатии за пределами окна
+const closePopupByClickOnOverlay = function (popup) {
+  //добавить слушатель на event.target. Если равен currentTarget - закрыть попап
+  popup.addEventListener('click', (event) => {
+    if (event.target !== event.currentTarget) {
+      return;
+    } else {
+      closePopup(popup);
+    }
+  });
+}
+
+//Закрытие попапа при нажатии на Escape
+const closePopupByEscape = (popup) => {
+  popup.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape') {
+      return;
+    } else {
+      closePopup(popup);
+    }
+  });
 }
 
 //Like
