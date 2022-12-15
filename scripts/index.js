@@ -27,6 +27,15 @@ const cardTemplateElement = document.querySelector('#cardTemplate').content;
 // Открытие попапа
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  //подключаем валидатор
+  enableValidation({
+    formSelector: '.form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__submit',
+    inactiveButtonClass: 'popup__submit_inactive',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__input-error_active'
+  });
 }
 const openPopupEdit = function (event) {
   // Вставка данных из профиля в форму при открытии
@@ -87,7 +96,7 @@ const closePopupByClickOnOverlay = function (popup) {
 
 //Закрытие попапа при нажатии на Escape
 const closePopupByEscape = (popup) => {
-  popup.addEventListener('keydown', (event) => {
+  document.addEventListener('keydown', (event) => {
     if (event.key !== 'Escape') {
       return;
     } else {
