@@ -27,6 +27,8 @@ const cardTemplateElement = document.querySelector('#cardTemplate').content;
 // Открытие попапа
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  popup.addEventListener('click', closePopupByClickOnOverlay);
+  document.addEventListener('keydown', closePopupByEscape);
 };
 
 const openPopupEdit = function (event) {
@@ -34,16 +36,10 @@ const openPopupEdit = function (event) {
   popupEditNameInput.value = nameTextElement.textContent;
   popupEditJobInput.value = jobTextElement.textContent;
   openPopup(popupEditElement);
-  //навесим слушатель на оверлей
-  closePopupByClickOnOverlay(popupEditElement);
-  closePopupByEscape(popupEditElement);
 }
 const openPopupAdd = () => {
   popupAddForm.reset();
   openPopup(popupAddElement);
-  //навесим слушатель на оверлей
-  closePopupByClickOnOverlay(popupAddElement);
-  closePopupByEscape(popupAddElement);
 }
 const openPopupFullScreen = (event) => {
   const popupFullScreenImg = popupFullScreenElement.querySelector('.popup__image');
@@ -54,15 +50,14 @@ const openPopupFullScreen = (event) => {
   popupFullScreenCaption.textContent = event.target.alt;
   //открыть попап
   openPopup(popupFullScreenElement);
-  //навесим слушатель на оверлей
-  closePopupByClickOnOverlay(popupFullScreenElement);
-  closePopupByEscape(popupFullScreenElement);
 }
 
 
 // Закрытие попапа
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  popup.resetEventListener('click', closePopupByClickOnOverlay);
+  document.removeEventListener('keydown', closePopupByEscape);
 }
 const closePopupEdit = () => {
   closePopup(popupEditElement);
@@ -75,26 +70,22 @@ const closePopupFullScreen = () => {
 }
 
 // Закрытие попапа при нажатии за пределами окна
-const closePopupByClickOnOverlay = function (popup) {
-  //добавить слушатель на event.target. Если равен currentTarget - закрыть попап
-  popup.addEventListener('click', (event) => {
+const closePopupByClickOnOverlay = function (event) {
     if (event.target !== event.currentTarget) {
       return;
     } else {
-      closePopup(popup);
+      closePopup(event.currentTarget);
     }
-  });
 }
 
 //Закрытие попапа при нажатии на Escape
-const closePopupByEscape = (popup) => {
-  document.addEventListener('keydown', (event) => {
-    if (event.key !== 'Escape') {
-      return;
-    } else {
-      closePopup(popup);
-    }
-  });
+const closePopupByEscape = (event) => {
+  if (event.key !== 'Escape') {
+    return;
+  } else {
+    const popupIsOpened = document.querySelector('.popup_opened');
+    closePopup(popupIsOpened);
+  }
 }
 
 //Like
