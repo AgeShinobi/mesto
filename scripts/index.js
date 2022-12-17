@@ -2,6 +2,8 @@
 const popupEditElement = document.querySelector('#popup-edit');
 const popupAddElement = document.querySelector('#popup-add');
 const popupFullScreenElement = document.querySelector('#popup-full-screen');
+const popupFullScreenImg = popupFullScreenElement.querySelector('.popup__image');
+const popupFullScreenCaption = popupFullScreenElement.querySelector('.popup__caption');
 // close popup buttons
 const popupEditCloseButton = popupEditElement.querySelector('.popup__close');
 const popupAddCloseButton = popupAddElement.querySelector('.popup__close');
@@ -42,8 +44,6 @@ const openPopupAdd = () => {
   openPopup(popupAddElement);
 }
 const openPopupFullScreen = (event) => {
-  const popupFullScreenImg = popupFullScreenElement.querySelector('.popup__image');
-  const popupFullScreenCaption = popupFullScreenElement.querySelector('.popup__caption');
   //получить свойста пикчи и присвоить тегу img свойства src & alt
   popupFullScreenImg.src = event.target.src;
   popupFullScreenImg.alt = event.target.alt;
