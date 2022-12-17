@@ -27,16 +27,8 @@ const cardTemplateElement = document.querySelector('#cardTemplate').content;
 // Открытие попапа
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  //подключаем валидатор
-  enableValidation({
-    formSelector: '.form',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__submit',
-    inactiveButtonClass: 'popup__submit_inactive',
-    inputErrorClass: 'popup__input_type_error',
-    errorClass: 'popup__input-error_active'
-  });
-}
+};
+
 const openPopupEdit = function (event) {
   // Вставка данных из профиля в форму при открытии
   popupEditNameInput.value = nameTextElement.textContent;

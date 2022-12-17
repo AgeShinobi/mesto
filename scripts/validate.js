@@ -1,15 +1,21 @@
-// const forms = [...document.querySelectorAll('.form')]
-//  const inputs = [...document.querySelectorAll('.popup__input')]
+//функция показа ошибки валидации
+const showValidationErrors = (input, config, err) => {
+  err.classList.add(config.errorClass);
+  err.textContent = input.validationMessage;
+}
+
+const hideValidationErrors = (config, err) => {
+  err.classList.remove(config.errorClass);
+  err.textContent = '';
+}
 
 //Чекаем валидность инпутов
 const checkInputValidity = (input, config) => {
   const error = document.querySelector(`.${input.id}-error`);
   if (!input.validity.valid) {
-    error.classList.add(config.errorClass);
-    error.textContent = input.validationMessage;
+    showValidationErrors(input, config, error);
   } else {
-    error.classList.remove(config.errorClass);
-    error.textContent = '';
+    hideValidationErrors(config, error);
   };
 };
 
@@ -25,24 +31,42 @@ const toggleButton = (inputs, button, config) => {
   };
 };
 
+//Установка слушателей
+const setEventListeners = (form, inputs, button, config) => {
+  //отмена отправки формы на сабмит
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    //деактивируем кноку после сабмита
+    button.classList.add(config.inactiveButtonClass);
+    button.disabled = true;
+  });
+  //проверка валидности и активация кнопки сабмита
+  inputs.forEach(input => {
+    input.addEventListener('input', () => {
+      checkInputValidity(input, config);
+      toggleButton(inputs, button, config);
+    });
+  });
+}
+
 const enableValidation = (config) => {
   const forms = [...document.querySelectorAll(config.formSelector)];
   forms.forEach(form => {
     const inputs = [...form.querySelectorAll(config.inputSelector)];
     const button = form.querySelector(config.submitButtonSelector);
-    //функция здесь для деактивации кнопки сабмита при открытии попапа
+    //деактивация кнопки сабмита при открытии попапа
     toggleButton(inputs, button, config);
 
-    form.addEventListener('submit', (event) => {
-      event.preventDefault();
-    });
-
-    inputs.forEach(input => {
-      input.addEventListener('input', () => {
-        checkInputValidity(input, config);
-        toggleButton(inputs, button, config);
-      });
-    });
+    setEventListeners(form, inputs, button, config);
   });
 
 };
+
+enableValidation({
+  formSelector: '.form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit',
+  inactiveButtonClass: 'popup__submit_inactive',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input-error_active'
+});
