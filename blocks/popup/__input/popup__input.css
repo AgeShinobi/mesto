@@ -4,7 +4,8 @@
   border: none;
   outline: none;
   padding: 0 0 9px;
-  margin-top: 9px;
+  margin: 0;
+
 
   /* текст */
   font-family: inherit;
@@ -16,8 +17,4 @@
 
   /* line */
   border-bottom: 1px solid rgba(0,0,0,.2);
-}
-
-.popup__input:first-of-type {
-  margin-top: 0;
 }

@@ -89,11 +89,11 @@ const closePopupByEscape = (event) => {
 }
 
 //Like
-const LikeSwitch = function (evt) {
+const toggleLike = function (evt) {
   evt.target.classList.toggle('card__like-btn_active');
 }
 //Delete
-const DeleteCard = function (evt) {
+const deleteCard = function (evt) {
   evt.target.closest('.card').remove();
 }
 
@@ -121,15 +121,15 @@ const createCard = function (item) {
   cardImageElement.src = item.link;
   cardImageElement.alt = item.name;
 
-  cardLikeButton.addEventListener('click', LikeSwitch);
-  cardDeleteButton.addEventListener('click', DeleteCard);
+  cardLikeButton.addEventListener('click', toggleLike);
+  cardDeleteButton.addEventListener('click', deleteCard);
   cardImageElement.addEventListener('click', openPopupFullScreen);
 
   return cardElement;
 }
 //создаем новую карточку и говорим куда ее добавить
 const prependCard = function (item, prependPlace) {
-  card = createCard(item);
+  const card = createCard(item);
   prependPlace.prepend(card);
 }
 

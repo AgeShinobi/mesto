@@ -75,10 +75,14 @@
         <button type="button" class="popup__close"></button>
         <h2 class="popup__title">Новое место</h2>
         <form name="profileAddForm" action="popup__form" class="form" novalidate>
-          <input name="mesto" id="title-input" class="popup__input" minlength="2" maxlength="40" type="text" placeholder="Название" required>
-          <span class="popup__input-error title-input-error"></span>
-          <input name="img-link" id="link-input" class="popup__input" type="url" placeholder="Ссылка на картинку" required>
-          <span class="popup__input-error link-input-error"></span>
+          <label class="popup__label">
+            <input name="mesto" id="title-input" class="popup__input" minlength="2" maxlength="40" type="text" placeholder="Название" required>
+            <span class="popup__input-error title-input-error"></span>
+          </label>
+          <label class="popup__label">
+            <input name="img-link" id="link-input" class="popup__input" type="url" placeholder="Ссылка на картинку" required>
+            <span class="popup__input-error link-input-error"></span>
+          </label>
           <button class="popup__submit" type="submit">Создать</button>
         </form>
       </div>

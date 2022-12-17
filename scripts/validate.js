@@ -2,11 +2,13 @@
 const showValidationErrors = (input, config, err) => {
   err.classList.add(config.errorClass);
   err.textContent = input.validationMessage;
+  input.classList.add(config.inputErrorClass);
 }
 
-const hideValidationErrors = (config, err) => {
+const hideValidationErrors = (input, config, err) => {
   err.classList.remove(config.errorClass);
   err.textContent = '';
+  input.classList.remove(config.inputErrorClass);
 }
 
 //Чекаем валидность инпутов
@@ -15,7 +17,7 @@ const checkInputValidity = (input, config) => {
   if (!input.validity.valid) {
     showValidationErrors(input, config, error);
   } else {
-    hideValidationErrors(config, error);
+    hideValidationErrors(input, config, error);
   };
 };
 
