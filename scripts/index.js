@@ -56,7 +56,7 @@ const openPopupFullScreen = (event) => {
 // Закрытие попапа
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-  popup.resetEventListener('click', closePopupByClickOnOverlay);
+  popup.removeEventListener('click', closePopupByClickOnOverlay);
   document.removeEventListener('keydown', closePopupByEscape);
 }
 const closePopupEdit = () => {
