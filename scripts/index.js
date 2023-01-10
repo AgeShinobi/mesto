@@ -1,3 +1,8 @@
+import Card from './Card.js';
+import { initialCards } from './cards.js';
+import FormValidator from './FormValidator.js';
+import { closePopup, closePopupByClickOnOverlay, closePopupByEscape } from './common.js';
+
 // popup
 const popupEditElement = document.querySelector('#popup-edit');
 const popupAddElement = document.querySelector('#popup-add');
@@ -13,7 +18,6 @@ const popupProfileElement = document.querySelector('.profile');
 const popupEditOpenElement = popupProfileElement.querySelector('.profile__edit-btn');
 const nameTextElement = popupProfileElement.querySelector('.profile__my-name');
 const jobTextElement = popupProfileElement.querySelector('.profile__about-me');
-const cardsSectionElement = document.querySelector('.cards');
 const popupAddOpenElement = popupProfileElement.querySelector('.profile__add-btn');
 // inputs
 const popupEditNameInput = popupEditElement.querySelector('#name-input');
@@ -22,8 +26,45 @@ const popupEditForm = document.forms.profileEditForm;
 const popupAddMestoInput = popupAddElement.querySelector('#title-input');
 const popupAddImageInput = popupAddElement.querySelector('#link-input');
 const popupAddForm = document.forms.profileAddForm;
-// template
-const cardTemplateElement = document.querySelector('#cardTemplate').content;
+
+//6 карточек по умолчанию создаются при загрузке страницы
+initialCards.forEach((item) => {
+  const card = new Card(item, Card.selectors.template);
+  const cardElement = card.generateCard();
+  document.querySelector(Card.selectors.prependPlace).prepend(cardElement);
+});
+
+//Создание карточки через попап
+const submitPopupAdd = function (event) {
+  event.preventDefault()
+  //берет содержимое инпутов и записывает в новый элемент
+  const cardInfo = {
+    name: popupAddMestoInput.value,
+    link: popupAddImageInput.value
+  };
+  //тут создается темплейт с вышеуказанными данными и делаем препенд 
+  const card = new Card(cardInfo, Card.selectors.template);
+  const cardElement = card.generateCard();
+
+  document.querySelector(Card.selectors.prependPlace).prepend(cardElement);
+  closePopup(popupAddElement);
+}
+
+//конфиг для FormValidator
+const config = {
+  formSelector: '.form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit',
+  inactiveButtonClass: 'popup__submit_inactive',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input-error_active'
+};
+//для каждой формы вешаем валидатор
+const forms = [...document.querySelectorAll(config.formSelector)];
+forms.forEach(form => {
+  const formValidator = new FormValidator(config, form);
+  formValidator.enableValidation();
+});
 
 
 // Открытие попапа
@@ -43,60 +84,6 @@ const openPopupAdd = () => {
   popupAddForm.reset();
   openPopup(popupAddElement);
 }
-const openPopupFullScreen = (event) => {
-  //получить свойста пикчи и присвоить тегу img свойства src & alt
-  popupFullScreenImg.src = event.target.src;
-  popupFullScreenImg.alt = event.target.alt;
-  popupFullScreenCaption.textContent = event.target.alt;
-  //открыть попап
-  openPopup(popupFullScreenElement);
-}
-
-
-// Закрытие попапа
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-  popup.removeEventListener('click', closePopupByClickOnOverlay);
-  document.removeEventListener('keydown', closePopupByEscape);
-}
-const closePopupEdit = () => {
-  closePopup(popupEditElement);
-}
-const closePopupAdd = () => {
-  closePopup(popupAddElement);
-}
-const closePopupFullScreen = () => {
-  closePopup(popupFullScreenElement);
-}
-
-// Закрытие попапа при нажатии за пределами окна
-const closePopupByClickOnOverlay = function (event) {
-    if (event.target !== event.currentTarget) {
-      return;
-    } else {
-      closePopup(event.currentTarget);
-    }
-}
-
-//Закрытие попапа при нажатии на Escape
-const closePopupByEscape = (event) => {
-  if (event.key !== 'Escape') {
-    return;
-  } else {
-    const popupIsOpened = document.querySelector('.popup_opened');
-    closePopup(popupIsOpened);
-  }
-}
-
-//Like
-const toggleLike = function (evt) {
-  evt.target.classList.toggle('card__like-btn_active');
-}
-//Delete
-const deleteCard = function (evt) {
-  evt.target.closest('.card').remove();
-}
-
 
 // 2. Запись и сохранение значений в окне 'редактировать профиль'.
 // При нажатии на submit должна происходить выборка содержимого input 
@@ -106,58 +93,14 @@ const submitPopupEdit = function (event) {
   nameTextElement.textContent = popupEditNameInput.value;
   jobTextElement.textContent = popupEditJobInput.value;
   // И закрываем попап
-  closePopupEdit();
-}
-
-//создаем новую карточку. Это часть функции prependCard
-const createCard = function (item) {
-  const cardElement = cardTemplateElement.querySelector('.card').cloneNode(true);
-  const cardTitleElement = cardElement.querySelector('.card__title');
-  const cardImageElement = cardElement.querySelector('.card__image');
-  const cardLikeButton = cardElement.querySelector('.card__like-btn');
-  const cardDeleteButton = cardElement.querySelector('.card__trash-btn');
-
-  cardTitleElement.textContent = item.name;
-  cardImageElement.src = item.link;
-  cardImageElement.alt = item.name;
-
-  cardLikeButton.addEventListener('click', toggleLike);
-  cardDeleteButton.addEventListener('click', deleteCard);
-  cardImageElement.addEventListener('click', openPopupFullScreen);
-
-  return cardElement;
-}
-//создаем новую карточку и говорим куда ее добавить
-const prependCard = function (item, prependPlace) {
-  const card = createCard(item);
-  prependPlace.prepend(card);
-}
-
-
-//6 карточек из массива добавим на страницу 
-initialCards.forEach((el) => {
-  prependCard(el, cardsSectionElement);
-});
-
-//Добавление новой карточки
-const submitPopupAdd = function (event) {
-  event.preventDefault()
-  //берет содержимое инпутов и записывает в новый элемент
-  const cardElement = {
-    name: popupAddMestoInput.value,
-    link: popupAddImageInput.value
-  };
-  //тут создается темплейт с вышеуказанными данными и делаем препенд 
-  prependCard(cardElement, cardsSectionElement);
-
-  closePopupAdd();
+  closePopup(popupEditElement);
 }
 
 // Регистрируем обработчики по клику
 popupEditOpenElement.addEventListener('click', openPopupEdit);
-popupEditCloseButton.addEventListener('click', closePopupEdit);
+popupEditCloseButton.addEventListener('click', () => { closePopup(popupEditElement) });
 popupEditForm.addEventListener('submit', submitPopupEdit);
 popupAddOpenElement.addEventListener('click', openPopupAdd);
-popupAddCloseButton.addEventListener('click', closePopupAdd);
+popupAddCloseButton.addEventListener('click', () => { closePopup(popupAddElement) });
 popupAddForm.addEventListener('submit', submitPopupAdd);
-popupFullScreenCloseButton.addEventListener('click', closePopupFullScreen);
+popupFullScreenCloseButton.addEventListener('click', () => { closePopup(popupFullScreenElement) });
